@@ -7,8 +7,8 @@ pipeline {
     stage('Tooling versions') {
       steps {
         sh '''
-          docker --version
-          docker compose version
+          sudo docker --version
+          sudo docker compose version
         '''
       }
     }

@@ -26,7 +26,7 @@ pipeline {
     // }
     stage('Deploy') {
       steps {
-        // sh 'sudo docker context use bitcot'
+        sh 'sudo docker context use bitcot'
         sh 'sudo docker-compose up --build -d'
         sh 'sudo docker-compose ps --filter json'
       }

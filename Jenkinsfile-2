@@ -16,14 +16,14 @@ pipeline {
         '''
       }
     }
-    stage('Build') {
-      steps {
-        sh 'sudo docker context use default'
-        sh 'ls'
-        sh 'pwd && sudo docker-compose build'
-        sh 'sudo docker-compose push'
-      }
-    }
+    // stage('Build') {
+    //   steps {
+    //     sh 'sudo docker context use default'
+    //     sh 'ls'
+    //     sh 'pwd && sudo docker-compose build'
+    //     sh 'sudo docker-compose push'
+    //   }
+    // }
     stage('Deploy') {
       steps {
         sh 'sudo docker context use myecscontext'

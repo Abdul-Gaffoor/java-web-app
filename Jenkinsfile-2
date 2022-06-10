@@ -16,18 +16,18 @@ pipeline {
         '''
       }
     }
-    // stage('Build') {
-    //   steps {
-    //     sh 'sudo docker context use default'
-    //     sh 'ls'
-    //     sh 'pwd && sudo docker-compose build'
-    //     sh 'sudo docker-compose push'
-    //   }
-    // }
+    stage('Build') {
+      steps {
+        sh 'sudo docker context use default'
+        sh 'ls'
+        sh 'pwd && sudo docker-compose build'
+        sh 'sudo docker-compose push'
+      }
+    }
     stage('Deploy') {
       steps {
         sh 'docker context use bitcot'
-        sh 'docker compose up -d'
+        sh 'docker compose up --build -d'
         sh 'docker compose ps --filter json'
       }
     }

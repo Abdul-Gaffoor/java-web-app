@@ -2,7 +2,7 @@ x-aws-vpc: "vpc-0dece3d7dce2d0578"
 version: '2'
 services:
   web:
-    image: devbitcot/java-web-app::latest
+    image: devbitcot/java-web-app:latest
     build:
       context: .
     ports:

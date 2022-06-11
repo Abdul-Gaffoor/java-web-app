@@ -24,6 +24,11 @@ pipeline {
         sh 'docker push devbitcot/java-web-app:latest'
       }
     }
+    stage('Docker Push') {
+      docker.withRegistry('https://registry-1.docker.io/v2/', 'Bitcot-DockerHub') {
+      dockerImage.push()
+    }
+    }
     stage('Deploy') {
       steps {
         sh 'docker context use bitcot'

@@ -20,7 +20,7 @@ pipeline {
       steps {
         sh 'docker context use default'
         sh 'ls'
-        sh 'docker build -t devbitcot/java-web-app:latest'
+        sh 'docker build -t devbitcot/java-web-app:latest 
         sh 'docker push devbitcot/java-web-app:latest'
       }
     }

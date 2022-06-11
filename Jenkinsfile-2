@@ -18,16 +18,16 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'sudo docker context use default'
+        sh 'docker context use default'
         sh 'ls'
-        sh 'pwd && sudo docker-compose build'
-        sh 'sudo docker-compose push'
+        sh 'docker build -t devbitcot/java-web-app:latest'
+        sh 'docker push devbitcot/java-web-app:latest'
       }
     }
     stage('Deploy') {
       steps {
         sh 'docker context use bitcot'
-        sh 'docker compose up --build -d'
+        sh 'docker compose up -d'
         sh 'docker compose ps --filter json'
       }
     }

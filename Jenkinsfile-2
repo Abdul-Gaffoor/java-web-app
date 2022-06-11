@@ -4,7 +4,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKER_HUB_CREDS = credentials('	Bitcot-DockerHub')
+    DOCKER_HUB_CREDS = credentials('Bitcot-DockerHub')
     AWS_CREDS = credentials('Abdul-BitcotKeys')
   }
   stages {

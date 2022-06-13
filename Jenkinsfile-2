@@ -3,10 +3,10 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
-  environment {
-    DOCKER_HUB_CREDS = credentials('Bitcot-DockerHub')
+  environment {     
+    DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
     AWS_CREDS = credentials('Abdul-BitcotKeys')
-  }
+    }
   stages {
     stage('Tooling versions') {
       steps {
@@ -20,17 +20,19 @@ pipeline {
       steps {
         sh 'docker context use default'
         sh 'ls'
-        sh 'docker build . -t 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest'
+        sh 'docker build . -t 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest:$BUILD_NUMBER'
       }
     }
-    stage('Login') {
-      steps {
-        sh 'echo $DOCKER_HUB_CREDS | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
-    }
+    stage('Login to Docker Hub') {      	
+    steps{
+      sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      echo 'Login Completed'      
+    }           
+}
     stage('Docker Push') {
       steps {
-        sh 'docker push 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest:latest'
+        sh 'docker push 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest:$BUILD_NUMBER'
+        echo 'Push Image Completed'
       }
     }
     stage('Deploy') {

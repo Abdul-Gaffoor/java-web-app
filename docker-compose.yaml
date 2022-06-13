@@ -1,4 +1,4 @@
-x-aws-vpc: "vpc-025fae40153b99f96"
+x-aws-vpc: "vpc-7bb9021e"
 version: '2'
 services:
   web:

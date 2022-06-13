@@ -22,9 +22,10 @@ pipeline {
         sh 'docker build . -t docker-composetest:latest'
       }
     }
-    stage 'Docker push'
+    stage 'Docker push'{}
     docker.withRegistry('https://686878367233.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
       docker.image('docker-composetest').push('latest')
+    }
   }
     stage('Deploy') {
       steps {

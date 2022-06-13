@@ -19,10 +19,9 @@ pipeline {
     }
   }
     stage('Build') {
-      stage('Tooling versions') {
-        steps{
-          script {
-            dockerImage = docker.build registry
+      steps{
+        script {
+          dockerImage = docker.build registry
             }
           }
         }

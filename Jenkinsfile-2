@@ -10,18 +10,21 @@ pipeline {
     }
   stages {
     stage('Tooling versions') {
+      steps {
+        sh '''
+          sudo docker --version
+          sudo docker-compose version
+        '''
+      }
+    }
+    stage('Build') {
+      stage('Tooling versions') {
       steps{
         script {
           dockerImage = docker.build registry
         }
       }
     }
-    stage('Build') {
-      steps {
-        sh 'docker context use default'
-        sh 'ls'
-        sh 'docker build . -t 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest:$BUILD_NUMBER'
-      }
     }
 //     stage('Login to Docker Hub') {      	
 //     steps{

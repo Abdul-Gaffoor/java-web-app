@@ -4,7 +4,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKER_HUB_CREDS = credentials('Bitcot-DockerHub')
     AWS_CREDS = credentials('Abdul-BitcotKeys')
   }
   stages {
@@ -20,14 +19,13 @@ pipeline {
       steps {
         sh 'docker context use default'
         sh 'ls'
-        sh 'docker build . -t devbitcot/java-web-app:latest'
+        sh 'docker build . -t docker-composetest:latest'
       }
     }
-    stage('Docker Push') {
-      steps {
-        sh 'docker push devbitcot/java-web-app:latest'
-      }
-    }
+    stage 'Docker push'
+    docker.withRegistry('https://686878367233.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
+      docker.image('docker-composetest').push('latest')
+  }
     stage('Deploy') {
       steps {
         sh 'docker context use bitcot'

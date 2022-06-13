@@ -42,5 +42,4 @@ pipeline {
         sh 'docker context use default'
       }
     }
-  }
 }

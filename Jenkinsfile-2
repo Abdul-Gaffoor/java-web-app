@@ -41,5 +41,10 @@ pipeline {
         sh 'docker context use default'
       }
     }
-}
+  }
+  post {
+    always {
+        sh 'docker context use default'
+    }
+  }
 }

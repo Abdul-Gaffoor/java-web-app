@@ -4,7 +4,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {     
-    DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
     registry = "686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest" 
     AWS_CREDS = credentials('Abdul-BitcotKeys')
     }

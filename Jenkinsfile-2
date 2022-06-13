@@ -37,6 +37,7 @@ pipeline {
         sh 'docker context use bitcot'
         sh 'docker compose up'
         sh 'docker compose ps --filter json'
+        sh 'docker context use default'
       }
     }
   }

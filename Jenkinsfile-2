@@ -24,6 +24,12 @@ pipeline {
             }
           }
         }
+    stage('Docker Login') {
+      steps {
+        sh 'aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 686878367233.dkr.ecr.us-west-2.amazonaws.com'
+        echo 'Docker Login Successful'
+      }
+    }
     stage('Docker Push') {
       steps {
         sh 'aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 686878367233.dkr.ecr.us-west-2.amazonaws.com'
@@ -38,7 +44,6 @@ pipeline {
         sh 'docker context use bitcot'
         sh 'docker compose up'
         sh 'docker compose ps --filter json'
-        sh 'docker context use default'
       }
     }
   }

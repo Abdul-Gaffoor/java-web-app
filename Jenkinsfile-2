@@ -5,15 +5,15 @@ pipeline {
   }
   environment {     
     DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
+    registry = "686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest" 
     AWS_CREDS = credentials('Abdul-BitcotKeys')
     }
   stages {
     stage('Tooling versions') {
-      steps {
-        sh '''
-          sudo docker --version
-          sudo docker-compose version
-        '''
+      steps{
+        script {
+          dockerImage = docker.build registry
+        }
       }
     }
     stage('Build') {

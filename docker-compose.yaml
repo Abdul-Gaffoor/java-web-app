@@ -2,7 +2,7 @@ x-aws-vpc: "vpc-025fae40153b99f96"
 version: '2'
 services:
   web:
-    image: devbitcot/java-web-app:latest
+    image: 686878367233.dkr.ecr.us-west-2.amazonaws.com/docker-composetest:latest
     build:
       context: .
     ports:

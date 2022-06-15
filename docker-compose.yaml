@@ -1,5 +1,6 @@
 x-aws-cluster: "Twilio-Stripe-Node"
 x-aws-vpc: "vpc-7bb9021e"
+x-aws-loadbalancer: "docker-compose"
 version: '2'
 services:
   web:

@@ -1,3 +1,4 @@
+x-aws-cluster: "Twilio-Stripe-Node"
 x-aws-vpc: "vpc-7bb9021e"
 version: '2'
 services:

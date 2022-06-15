@@ -40,7 +40,7 @@ pipeline {
     stage('ECS Deploy') {
       steps {
         sh 'docker context use bitcot'
-        sh 'docker compose up'
+        sh 'docker compose up -d'
         sh 'docker compose ps --format json'
       }
     }
